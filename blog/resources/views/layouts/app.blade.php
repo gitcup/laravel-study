@@ -79,7 +79,7 @@
                                         <a class="nav-link" href="{{ route('typeproduct') }}">ประเภทสินค้า</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('product') }}">สินค้าต่าง</a>
+                                        <a class="nav-link" href="{{ route('product') }}">สินค้า</a>
                                     </li>
 
                                     <li class="divider"></li>

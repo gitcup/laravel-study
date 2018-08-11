@@ -3,22 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/blog/database/migrations/2018_07_29_143403_create_books_table.php</file>
+            <file>file:/C:/xampp/htdocs/blog/resources/views/typeproduct/create.blade.php</file>
             <file>file:/C:/xampp/htdocs/blog/app/Http/Controllers/TypeBooksController.php</file>
             <file>file:/C:/xampp/htdocs/blog/app/Http/Controllers/TypeProductController.php</file>
+            <file>file:/C:/xampp/htdocs/blog/app/Product.php</file>
             <file>file:/C:/xampp/htdocs/blog/app/Books.php</file>
-            <file>file:/C:/xampp/htdocs/blog/resources/views/product/create.blade.php</file>
+            <file>file:/C:/xampp/htdocs/blog/app/Http/Controllers/BooksController.php</file>
+            <file>file:/C:/xampp/htdocs/blog/app/Http/Controllers/Controller.php</file>
+            <file>file:/C:/xampp/htdocs/blog/resources/views/typeproduct/index.blade.php</file>
             <file>file:/C:/xampp/htdocs/blog/resources/views/product/index.blade.php</file>
             <file>file:/C:/xampp/htdocs/blog/routes/web.php</file>
+            <file>file:/C:/xampp/htdocs/blog/resources/views/product/edit.blade.php</file>
             <file>file:/C:/xampp/htdocs/blog/resources/views/home.blade.php</file>
-            <file>file:/C:/xampp/htdocs/blog/resources/views/welcome.blade.php</file>
+            <file>file:/C:/xampp/htdocs/blog/resources/views/typebooks/index.blade.php</file>
             <file>file:/C:/xampp/htdocs/blog/app/Http/Controllers/ProductController.php</file>
-            <file>file:/C:/xampp/htdocs/blog/resources/views/layouts/app.blade.php</file>
+            <file>file:/C:/xampp/htdocs/blog/resources/views/welcome.blade.php</file>
+            <file>file:/C:/xampp/htdocs/blog/app/TypeProduct.php</file>
             <file>file:/C:/xampp/htdocs/blog/resources/views/about.blade.php</file>
-            <file>file:/C:/xampp/htdocs/blog/resources/views/books/create.blade.php</file>
+            <file>file:/C:/xampp/htdocs/blog/resources/views/layouts/app.blade.php</file>
             <file>file:/C:/xampp/htdocs/blog/app/Http/Requests/StoreBooksRequest.php</file>
+            <file>file:/C:/xampp/htdocs/blog/resources/views/books/create.blade.php</file>
+            <file>file:/C:/xampp/htdocs/blog/app/TypeBooks.php</file>
+            <file>file:/C:/xampp/htdocs/blog/app/Http/Requests/StoreTypeProductRequest.php</file>
             <file>file:/C:/xampp/htdocs/blog/app/Http/Requests/StoreProductRequest.php</file>
-            <file>file:/C:/xampp/htdocs/blog/database/migrations/2018_08_10_135455_create_product_table.php</file>
         </group>
     </open-files>
 </project-private>

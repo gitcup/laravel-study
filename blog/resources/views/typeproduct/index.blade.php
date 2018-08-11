@@ -3,6 +3,7 @@
 <div class="container">
 <div class="row">
 <div class="col-md-10 col-md-offset-1">
+      <?= link_to('typeproduct/create', $title = 'เพิ่มข้อมูล', ['class' => 'btn btn-primary'], $secure = null); ?>
 <div class="panel panel-default">
 <div class="panel-heading">แสดงข้อมูลประเภทสินค้า [ทั้งหมด {{ $count }} รายการ]</div>
 <div class="panel-body">

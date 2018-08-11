@@ -33,5 +33,6 @@ Auth::routes();
 //ตั้งชื่อ เมธอด index ว่า book
 Route::resource('/books', 'BooksController')->name('index','books');;
 Route::resource('/product', 'ProductController')->name('index','product');;
+Route::resource('/typeproduct', 'TypeProductController')->name('index','typeproduct');;
 
 Route::get('/home', 'HomeController@index')->name('home');
