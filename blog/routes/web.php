@@ -36,3 +36,4 @@ Route::resource('/product', 'ProductController')->name('index','product');;
 Route::resource('/typeproduct', 'TypeProductController')->name('index','typeproduct');;
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/adminsetting', 'AdminSettingController@index')->name('adminsetting');

@@ -42,7 +42,7 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
-                           
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">เข้าสู่ระบบ</a>
                             </li>
@@ -53,26 +53,53 @@
                                 <a class="nav-link" href="{{ route('about') }}">เกี่ยวกับ</a>
                             </li>
                             @else
-                            <li class="nav-item dropdown">
+                            <div class="dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
+                                <ul class="dropdown-menu">
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                               document.getElementById('logout-form').submit();">
-                                        {{ __('ออกจากระบบ') }}
-                                    </a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('adminsetting') }}">ตั้งค่าผู้ใช้</a>
+                                    </li>
+                                    <li class="nav-item">
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                                        <a class="nav-link" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                            {{ __('ออกจากระบบ') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+
+                                    </li>
+
+
+                                </ul>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <li class="nav-item dropdown">
+
+
+
                             </li>
                             <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">จัดการข้อมูล
-                                    <span class="caret"></span></button>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    จัดการข้อมูล <span class="caret"></span>
+                                </a>
+                                <!--                                <button class="btn btn-default dropdown-toggle"  data-toggle="dropdown">จัดการข้อมูล
+                                                                    <span class="caret"></span></button>-->
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-header">หมวดหมู่สินค้า</li>
                                     <li class="nav-item">
@@ -96,7 +123,7 @@
 
 
 
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('about') }}">เกี่ยวกับ</a>
                             </li>
