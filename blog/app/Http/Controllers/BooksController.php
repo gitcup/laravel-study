@@ -23,7 +23,7 @@ class BooksController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $books = Books::with('typebooks')->orderBy('id', 'desc')->paginate(5);
+        $books = Books::with('typebooks')->orderBy('id', 'desc')->paginate(5); //model books
         return view('books/index', ['books' => $books]);
     }
 

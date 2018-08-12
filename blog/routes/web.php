@@ -15,9 +15,17 @@ Route::get('/typeproduct','TypeProductController@index')->name('typeproduct');
 //ลบข้อมูลสินค้า
 Route::get('/typeproduct/destroy/{id}', 'TypeProductController@destroy');
 
+
+//หนังสือ
 Route::get('/typebooks','TypeBooksController@index')->name('typebooks');
 //ลบข้อมูล
 Route::get('/typebooks/destroy/{id}', 'TypeBooksController@destroy');
+
+//ผู้ใช้
+Route::get('/admin','AdminController@index')->name('admin');
+//ลบข้อมูล
+Route::get('/typebooks/destroy/{id}', 'AdminController@destroy');
+
 
 //แนะนำตัว
 Route::get('about','SiteController@index');
@@ -34,6 +42,7 @@ Auth::routes();
 Route::resource('/books', 'BooksController')->name('index','books');;
 Route::resource('/product', 'ProductController')->name('index','product');;
 Route::resource('/typeproduct', 'TypeProductController')->name('index','typeproduct');;
+Route::resource('/admin', 'AdminController')->name('index','admin');; // หน้าเพิ่มข้อมูล
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/adminsetting', 'AdminSettingController@index')->name('adminsetting');
+Route::get('/admin', 'AdminController@index')->name('admin');

@@ -60,7 +60,7 @@
                                 <ul class="dropdown-menu">
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('adminsetting') }}">ตั้งค่าผู้ใช้</a>
+                                        <a class="nav-link" href="{{ route('admin') }}">ตั้งค่าผู้ใช้</a>
                                     </li>
                                     <li class="nav-item">
 
