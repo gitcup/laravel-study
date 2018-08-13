@@ -18,17 +18,17 @@ class AdminController extends Controller
         return view('admin.create');
     }
     
-    //ลบ
-//    public function destroy($id) {
-//        $admin = Admin::find($id);
-//        if ($admin->image_user != 'nopic.jpg') {
-//            File::delete(public_path() . '\\images\\admin' . $admin->image_user);
-//            File::delete(public_path() . '\\images\\resize\\admin' . $admin->image_user);
-//        }
-//        $admin->delete();
-//        return redirect()->action('AdminController@index');
-//    }
-//    
+   // ลบ
+    public function destroy($id) {
+        $admin = Admin::find($id);
+        if ($admin->image_user != 'nopic.jpg') {
+            File::delete(public_path() . '\\images\\admin' . $admin->image_user);
+            File::delete(public_path() . '\\images\\resize\\admin' . $admin->image_user);
+        }
+        $admin->delete();
+        return redirect()->action('AdminController@index');
+    }
+    
     //เพิ่มข้อมูล พร้อมตรวจสอบข้อมูล
      public function store(AdminRequest $request) {
         $admin = new Admin();

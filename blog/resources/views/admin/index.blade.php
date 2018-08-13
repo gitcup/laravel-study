@@ -39,9 +39,17 @@
                     @foreach ($admin as $admin1)
                     <tr>
                         <td>{{ $admin1->id }}</td>
-                        <td>{{ $admin1->name }}</td>
+                        <td>{{ $admin1->username }}</td>
+                        <td><a href="{{ asset('images/admin/'.$admin1->image_user)}}"data-lity><img src="{{ asset('images/resize/admin/'.$admin1->image_user) }}" style="width:50px"></a></td>
+                        <td>{{ $admin1->name }}&nbsp;&nbsp;{{ $admin1->lastname }}</td>
+                        <td>{{ $admin1->email }}<br><p align="center">{{ $admin1->phone_number}}</p></td>
                         <td></td>
-                        <td>{{ $admin1->phone_number }}</td>
+                        <td>
+                            <?= Form::open(array('url' => 'admin/' . $admin1->id, 'method' => 'delete')) ?>
+                            <button type="submit" class="btn">ลบ</button>
+                            {!! Form::close() !!}
+                        </td>
+
 
 
                     </tr>
@@ -71,7 +79,7 @@
                                     You are logged in!
                                 </div>-->
 
-                <table class="table table-striped">
+               <table class="table table-striped">
                     <tr>
                         <th>ลำดับ</th>
                         <th>ชื่อผู้ใช้</th>
@@ -85,9 +93,17 @@
                     @foreach ($admin as $admin1)
                     <tr>
                         <td>{{ $admin1->id }}</td>
-                        <td>{{ $admin1->name }}</td>
+                        <td>{{ $admin1->username }}</td>
+                        <td><a href="{{ asset('images/admin/'.$admin1->image_user)}}"data-lity><img src="{{ asset('images/resize/admin/'.$admin1->image_user) }}" style="width:50px"></a></td>
+                        <td>{{ $admin1->name }}&nbsp;&nbsp;{{ $admin1->lastname }}</td>
+                        <td>{{ $admin1->email }}<br><p align="center">{{ $admin1->phone_number}}</p></td>
                         <td></td>
-                        <td>{{ $admin1->phone_number }}</td>
+                        <td>
+                            <?= Form::open(array('url' => 'admin/' . $admin1->id, 'method' => 'delete')) ?>
+                            <button type="submit" class="btn">ลบ</button>
+                            {!! Form::close() !!}
+                        </td>
+
 
 
                     </tr>
@@ -117,7 +133,7 @@
                                     You are logged in!
                                 </div>-->
 
-                <table class="table table-striped">
+               <table class="table table-striped">
                     <tr>
                         <th>ลำดับ</th>
                         <th>ชื่อผู้ใช้</th>
@@ -131,9 +147,17 @@
                     @foreach ($admin as $admin1)
                     <tr>
                         <td>{{ $admin1->id }}</td>
-                        <td>{{ $admin1->name }}</td>
+                        <td>{{ $admin1->username }}</td>
+                        <td><a href="{{ asset('images/admin/'.$admin1->image_user)}}"data-lity><img src="{{ asset('images/resize/admin/'.$admin1->image_user) }}" style="width:50px"></a></td>
+                        <td>{{ $admin1->name }}&nbsp;&nbsp;{{ $admin1->lastname }}</td>
+                        <td>{{ $admin1->email }}<br><p align="center" > <span class="glyphicon glyphicon-envelope"></span>{{ $admin1->phone_number}}</p></td>
                         <td></td>
-                        <td>{{ $admin1->phone_number }}</td>
+                        <td>
+                            <?= Form::open(array('url' => 'admin/' . $admin1->id, 'method' => 'delete')) ?>
+                            <button type="submit" class="btn">ลบ</button>
+                            {!! Form::close() !!}
+                        </td>
+
 
 
                     </tr>

@@ -21,7 +21,7 @@ Route::get('/typebooks','TypeBooksController@index')->name('typebooks');
 //ลบข้อมูล
 Route::get('/typebooks/destroy/{id}', 'TypeBooksController@destroy');
 
-//ผู้ใช้
+//ผู้ดูแลระบบ
 Route::get('/admin','AdminController@index')->name('admin');
 //ลบข้อมูล
 Route::get('/admin/destroy/{id}', 'AdminController@destroy');
