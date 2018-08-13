@@ -24,7 +24,7 @@ Route::get('/typebooks/destroy/{id}', 'TypeBooksController@destroy');
 //ผู้ใช้
 Route::get('/admin','AdminController@index')->name('admin');
 //ลบข้อมูล
-Route::get('/typebooks/destroy/{id}', 'AdminController@destroy');
+Route::get('/admin/destroy/{id}', 'AdminController@destroy');
 
 
 //แนะนำตัว
