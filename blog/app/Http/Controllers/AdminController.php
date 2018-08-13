@@ -40,9 +40,10 @@ class AdminController extends Controller
          $admin->phone_number = $request->phone_number;
          if ($request->hasFile('image_user')) {
             $filename = str_random(10) . '.' . $request->file('image_user')->getClientOriginalExtension();
-            $request->file('image_user')->move(public_path() . '/images/admin', $filename);
-            Image::make(public_path() . '/images/admin' . $filename)->resize(50, 50)->save(public_path() . '/images/resize/admin' .
+            $request->file('image_user')->move(public_path() . '/images/admin/', $filename);
+            Image::make(public_path() . '/images/admin/' . $filename)->resize(50, 50)->save(public_path() . '/images/resize/admin/' .
                     $filename);
+            
              $admin->image_user = $filename;
         } else {
              $admin->image_user = 'nopic.jpg';
