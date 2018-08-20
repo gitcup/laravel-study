@@ -14,5 +14,7 @@ class Admin extends Model
  public function admin() {
         return $this->hasOne(user::class, 'id'); //PK ของตาราง Users
     }
+    
+  
 
 }

@@ -10,6 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//เชื่อมต่อฐานข้อมูล เช็คด้วย http://localhost/blog/public/check-connect
+Route::get('check-connect',function(){
+ if(DB::connection()->getDatabaseName())
+ {
+ return "Yes! successfully connected to the DB: " . DB::connection()->getDatabaseName();
+ }else{
+ return 'Connection False !!';
+ }
+ 
+});
+
+
+
 //สินค้า
 Route::get('/typeproduct','TypeProductController@index')->name('typeproduct');
 //ลบข้อมูลสินค้า
