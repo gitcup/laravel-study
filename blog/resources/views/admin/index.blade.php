@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+ <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2"> การตั้งค่าผู้ใช้</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              
+             
+            </div>
+          </div>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -28,7 +36,8 @@
                                     You are logged in!
                                 </div>-->
 
-                <table class="table table-striped">
+                <table class="table ">
+                    <thead class="thead-light">
                     <tr>
                         <th>ลำดับ</th>
                         <th>ชื่อผู้ใช้</th>
@@ -39,7 +48,7 @@
                         <th>Acitons</th>
 
                     </tr>
-
+</thead>
                     @foreach ($admin as $administrator)
                     <tr>
                         <td>{{ $administrator->id }}</td>
@@ -50,9 +59,10 @@
                         <td></td>
                         <td>
                             @if(strtolower(Auth::user()->user_type) === 'admin'  )
-                            <a href="{{ url('/admin/'.$administrator->id.'/edit') }}" >แก้ไข</a>
+                            <a href="{{ url('/admin/'.$administrator->id.'/edit') }}" class="btn btn-outline-warning" >แก้ไข</a>
+                            
                             <?= Form::open(array('url' => 'admin/' . $administrator->id, 'method' => 'delete')) ?>
-                            <button type="submit" class="btn">ลบ</button>
+                            <button type="submit" class="btn btn-outline-danger">ลบ</button>
                             {!! Form::close() !!}
                             @endif
 
@@ -83,7 +93,7 @@
         <div class="col-md-8">
             <div class="card">
 
-                <div class="card-header">พนักงานที่สามารถแก้ไขข้อมูลได้ (OfficerEdit)<div class="panel-heading">แสดงข้อมูลผู้ใช้ทั้งหมด {{ $admin2->total() }} คน</div></div>
+                <div class="card-header">พนักงานที่สามารถแก้ไขข้อมูลได้ (Officer Edit)<div class="panel-heading">แสดงข้อมูลผู้ใช้ทั้งหมด {{ $admin2->total() }} คน</div></div>
 
                 <!--                <div class="card-body">
                                     @if (session('status'))
@@ -95,16 +105,18 @@
                                     You are logged in!
                                 </div>-->
 
-                <table class="table table-striped">
+                <table class="table " >
+                    <thead class="thead-light">
                     <tr>
-                        <th >ลำดับ</th>
-                        <th>ชื่อผู้ใช้</th>
+                        <th  >ลำดับ</th>
+                        <th width="70%">ชื่อผู้ใช้</th>
                         <th>รูปภาพ</th>
                         <th>ชื่อ-นามสกุล</th>
-                        <th>ข้อมูลการติดต่อ</th>
+                        <th >ข้อมูลการติดต่อ</th>
                         @if(strtolower(Auth::user()->user_type) === 'admin' or strtolower(Auth::user()->user_type) === 'officer_edit' )
-                        <th>ผู้เพิ่มข้อมูล</th>
+                        <th >ผู้เพิ่มข้อมูล</th>
                         <th>Acitons</th>
+                        </thead>
                         @endif 
                     </tr>
                     @foreach ($admin2 as $edit_admin)
@@ -114,17 +126,17 @@
                         <td><a href="{{ asset('images/edit_admin/'.$edit_admin->image_user)}}"data-lity><img src="{{ asset('images/resize/admin/'.$edit_admin->image_user) }}" style="width:50px"></a></td>
                         <td>{{ $edit_admin->name }}&nbsp;&nbsp;{{ $edit_admin->lastname }}</td>
                         <td align="center" >{{ $edit_admin->email }}<br>{{ $edit_admin->phone_number}}</td>
-
+                        <td></td>
                         @if(strtolower(Auth::user()->user_type) === 'officer_edit' or (Auth::user()->user_type) === 'admin' )
                         <td>
 
-                            <a href="{{ url('/admin/'.$edit_admin->id.'/edit') }}" >แก้ไข</a>
+                            <a href="{{ url('/admin/'.$edit_admin->id.'/edit') }}" class="btn btn-outline-warning" >แก้ไข</a>
 
                             @endif
 
                             @if(strtolower (Auth::user()->user_type) === 'admin' )
                             <?= Form::open(array('url' => 'admin/' . $edit_admin->id, 'method' => 'delete')) ?>
-                            <button type="submit" class="btn">ลบ</button>
+                            <button type="submit" class="btn btn-outline-danger">ลบ</button>
                             {!! Form::close() !!}
                             @endif
 
@@ -153,7 +165,7 @@
         <div class="col-md-8">
             <div class="card">
 
-                <div class="card-header">พนักงานที่ดูได้อย่างเดียว (OfficerView)<div class="panel-heading">แสดงข้อมูลผู้ใช้ทั้งหมด {{ $admin3->total() }} คน</div></div>
+                <div class="card-header">พนักงานที่ดูได้อย่างเดียว (Officer View)<div class="panel-heading">แสดงข้อมูลผู้ใช้ทั้งหมด {{ $admin3->total() }} คน</div></div>
 
                 <!--                <div class="card-body">
                                     @if (session('status'))
@@ -165,7 +177,8 @@
                                     You are logged in!
                                 </div>-->
 
-                <table class="table table-striped">
+                <table class="table">
+                    <thead class="thead-light">
                     <tr>
                         <th>ลำดับ</th>
                         <th>ชื่อผู้ใช้</th>
@@ -175,6 +188,7 @@
                         @if(strtolower(Auth::user()->user_type) === 'admin' or strtolower(Auth::user()->user_type) === 'officer_edit' )
                         <th>ผู้เพิ่มข้อมูล</th>
                         <th>Acitons</th>
+                        </thead>
                         @endif 
                     </tr>
                     @foreach ($admin3 as $officer_view)
@@ -188,7 +202,7 @@
                         <td></td>
                         <td>
 
-                            <a href="{{ url('/admin/'.$officer_view->id.'/edit') }}" >แก้ไข</a>
+                            <a href="{{ url('/admin/'.$officer_view->id.'/edit')  }}" class="btn btn-outline-warning" >แก้ไข</a>
                             <?= Form::open(array('url' => 'admin/' . $officer_view->id, 'method' => 'delete')) ?>
 
                             {!! Form::close() !!}
@@ -196,7 +210,7 @@
                             @if(strtolower(Auth::user()->user_type) === 'admin'   )
 
                             <?= Form::open(array('url' => 'admin/' . $officer_view->id, 'method' => 'delete')) ?>
-                            <button type="submit" class="btn">ลบ</button>
+                            <button type="submit" class="btn btn-outline-danger">ลบ</button>
                             {!! Form::close() !!}
                             @endif
                         </td>

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Laravel\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product; // อย่าลืม use model product เข้ามาใช้
+use Laravel\Product; // อย่าลืม use model product เข้ามาใช้
 use Image; //เรียกใช้ library จัดการรูปภาพเข้ามาใช้งาน
-use App\Http\Requests\StoreProductRequest; //ตรวจสอบความถูกต้อง
+use Laravel\Http\Requests\StoreProductRequest; //ตรวจสอบความถูกต้อง
 use File; //เรียกใช้ library จัดการไฟล์เข้ามาใช้งาน
 
 class ProductController extends Controller {

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Laravel\Http\Controllers;
 
-use App\Admin;
+use Laravel\Admin;
 use Illuminate\Http\Request;
 use Image; //เรียกใช้ library จัดการรูปภาพเข้ามาใช้งาน
-use App\Http\Requests\AdminRequest; //ตรวจสอบความถูกต้อง
+use Laravel\Http\Requests\AdminRequest; //ตรวจสอบความถูกต้อง
 use File; //เรียกใช้ library จัดการไฟล์เข้ามาใช้งาน
 use Illuminate\Support\Facades\Hash; //การเข้ารหัส password มาใช้
 use DB; //อย่าลืมนำ DB เข้ามา
