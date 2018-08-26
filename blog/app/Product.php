@@ -1,13 +1,13 @@
 <?php
 
-namespace Laravel;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model {
 
     protected $table = 'product'; //กำหนดชื􀀮อตารางในฐานข้อมูล
-    protected $fillable = ['title', 'price', 'typeproduct_id']; //กำหนดให้สามารถเพ􀀮ิมข้อมูลได้ในคำสง􀀮ั
+    protected $fillable = ['title', 'price', 'typeproduct_id','image']; //กำหนดให้สามารถเพ􀀮ิมข้อมูลได้ในคำสง􀀮ั
 
 //เดียว Mass Assignment
 

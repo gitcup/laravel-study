@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laravel\Books; // อย่าลืม use model books เข้ามาใช้
+use App\Books; // อย่าลืม use model books เข้ามาใช้
 use Image; //เรียกใช้ library จัดการรูปภาพเข้ามาใช้งาน
-use Laravel\Http\Requests\StoreBooksRequest; //ตรวจสอบความถูกต้อง
+use App\Http\Requests\StoreBooksRequest; //ตรวจสอบความถูกต้อง
 use File; //เรียกใช้ library จัดการไฟล์เข้ามาใช้งาน
 
 class BooksController extends Controller {

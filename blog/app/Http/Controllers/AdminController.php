@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Laravel\Admin;
+use App\Admin;
 use Illuminate\Http\Request;
 use Image; //เรียกใช้ library จัดการรูปภาพเข้ามาใช้งาน
-use Laravel\Http\Requests\AdminRequest; //ตรวจสอบความถูกต้อง
+use App\Http\Requests\AdminRequest; //ตรวจสอบความถูกต้อง
 use File; //เรียกใช้ library จัดการไฟล์เข้ามาใช้งาน
 use Illuminate\Support\Facades\Hash; //การเข้ารหัส password มาใช้
 use DB; //อย่าลืมนำ DB เข้ามา
@@ -87,13 +87,38 @@ class AdminController extends Controller {
     }
 
     public function update(AdminRequest $request, $id) {
-        $admin = Admin::find($id);
-        /* $book->title = $request->title;
-          $book->price = $request->price;
-          $book->typebooks_id = $request->typebooks_id;
-          $book->save(); */
-        $admin->update($request->all()); //mass asignment , define $fillable (model)
-        return redirect()->action('AdminController@index');
+      $requestData = $request->all();
+    $post = Admin::findOrFail($id);
+
+    $pathToStore = public_path('images/admin');
+
+    if ($request->hasFile('image')) 
+    {
+        $file = $request->file('image');
+        $rules = array('file' => 'required|mimes:png,gif,jpeg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
+        $validator = \Illuminate\Support\Facades\Validator::make(array('file'=> $file), $rules);
+
+        if($validator->passes()) 
+        {
+            $filename = $file->getClientOriginalName(); 
+            $extension = $file -> getClientOriginalExtension();
+            $picture = sha1($filename . time()) . '.' . $extension;
+            $upload_success = $file->move($pathToStore, $picture);
+          
+            if($upload_success)
+            {
+                //if success, create thumb
+                $image = Image::make(sprintf($pathToStore.'/%s', $picture))->resize(600, 531)->save('images/'.'/resize/'.'admin/'.$picture);
+            }
+        }
+
+        $requestData['image_user'] = "{$picture}"; //image_user คือ คอลัมน์ใน DB
+
+    }
+
+    $post->update($requestData);
+$request->session()->flash('status', 'สำเร็จ');
+    return back();
     }
 
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laravel\Product; // อย่าลืม use model product เข้ามาใช้
+use App\Product; // อย่าลืม use model product เข้ามาใช้
 use Image; //เรียกใช้ library จัดการรูปภาพเข้ามาใช้งาน
-use Laravel\Http\Requests\StoreProductRequest; //ตรวจสอบความถูกต้อง
+use App\Http\Requests\StoreProductRequest; //ตรวจสอบความถูกต้อง
 use File; //เรียกใช้ library จัดการไฟล์เข้ามาใช้งาน
 
 class ProductController extends Controller {
@@ -15,15 +15,16 @@ class ProductController extends Controller {
         $this->middleware('auth', ['except' => ['index']]);
         //$this->middleware('auth', ['except' => ['index', 'create', 'store']]);
     }
-         //ผู้ใช้จะไม่สามารถเข้าถึงเมธอดอ􀀮ืนๆ ใน ProductController ได้ ยกเว้นเมธอด index
-    
+
+    //ผู้ใช้จะไม่สามารถเข้าถึงเมธอดอ􀀮ืนๆ ใน ProductController ได้ ยกเว้นเมธอด index
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $product = Product::with('typeproduct')->orderBy('id', 'desc')->paginate(5);
+        $product = Product::with('typeproduct')->orderBy('id', 'asc')->paginate(5);
         return view('product/index', ['product' => $product]);
     }
 
@@ -83,6 +84,7 @@ class ProductController extends Controller {
      */
     public function edit($id) {
         $product = Product::findOrFail($id);
+
         return view('product.edit', ['product' => $product]);
     }
 
@@ -94,13 +96,34 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(StoreProductRequest $request, $id) {
-        $product = Product::find($id);
-        /* $product->title = $request->title;
-          $product->price = $request->price;
-          $product->typeproduct_id = $request->typeproduct_id;
-          $product->save(); */
-        $product->update($request->all()); //mass asignment , define $fillable (model)
-        return redirect()->action('ProductController@index');
+        $requestData = $request->all();
+        $post = Product::findOrFail($id);
+
+        $pathToStore = public_path('images');
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $rules = array('file' => 'required|mimes:png,gif,jpeg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
+            $validator = \Illuminate\Support\Facades\Validator::make(array('file' => $file), $rules);
+
+            if ($validator->passes()) {
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $picture = sha1($filename . time()) . '.' . $extension;
+                $upload_success = $file->move($pathToStore, $picture);
+
+                if ($upload_success) {
+                    //if success, create thumb
+                    $image = Image::make(sprintf($pathToStore . '/%s', $picture))->resize(600, 531)->save($pathToStore . '/resize/' . $picture);
+                }
+            }
+
+            $requestData['image'] = "{$picture}";
+        }
+
+        $post->update($requestData);
+        $request->session()->flash('status', 'สำเร็จ');
+        return back();
     }
 
     /**
@@ -118,6 +141,5 @@ class ProductController extends Controller {
         $product->delete();
         return redirect()->action('ProductController@index');
     }
-
 
 }

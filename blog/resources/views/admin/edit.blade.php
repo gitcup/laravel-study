@@ -16,7 +16,16 @@
 </ul>
 </div>
 @endif
-<?= Form::model($admin, array('url' => 'admin/' . $admin->id, 'method' => 'put')) ?>
+<?= Form::model($admin, array('url' => 'admin/' . $admin->id, 'method' => 'put','files' => true)) ?>
+<a href="{{ asset('images/admin/'.$admin->image_user)}}"data-lity><img src="{{ asset('images/admin/'.$admin->image_user) }}" style="width:400px"></a>
+    
+    <div class="col-xs-4">
+<div class="form-group">
+{!! Form::label('image', 'รูปโปรไฟล์'); !!}
+<?= Form::file('image', null, ['class' => 'form-control']) ?>
+</div>
+</div>
+
 <div class="col-xs-8">
 <div class="form-group">
 <?= Form::label('username', 'ชื่อผู้ใช้'); ?>
@@ -56,4 +65,17 @@
 </div>
 </div>
 </div>
+@endsection
+@section('footer')
+@if (session()->has('status'))
+<script>
+swal({
+title: "<?php echo session()->get('status'); ?>",
+text: "แก้ไขข้อมูลแอดมิน",
+timer: 2000,
+type: 'success',
+showConfirmButton: false
+});
+</script>
+@endif
 @endsection

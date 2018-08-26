@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Horsefly'),
 
     /*
     |--------------------------------------------------------------------------
@@ -154,11 +154,11 @@ return [
         /*
          * Application Service Providers...
          */
-        Laravel\Providers\AppServiceProvider::class,
-        Laravel\Providers\AuthServiceProvider::class,
-        // Laravel\Providers\BroadcastServiceProvider::class,
-        Laravel\Providers\EventServiceProvider::class,
-        Laravel\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
         //การติดตั้ง image libraly
         Intervention\Image\ImageServiceProvider::class, 
         //การสร้าง form collcetive

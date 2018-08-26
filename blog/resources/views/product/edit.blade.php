@@ -15,7 +15,7 @@
 </ul>
 </div>
 @endif
-<?= Form::model($product, array('url' => 'product/' . $product->id, 'method' => 'put')) ?>
+<?= Form::model($product, array('url' => 'product/' . $product->id, 'method' => 'put','files' => true)) ?>
 <div class="col-xs-8">
     
     
@@ -36,6 +36,14 @@
 <?= Form::select('typeproduct_id', App\TypeProduct::all()->pluck('name', 'id'), null, ['class' => 'formcontrol',
 'placeholder' => 'กรุณาเลือกประเภทสินค้า...']); ?>
 </div>
+    <a href="{{ asset('images/'.$product->image)}}"data-lity><img src="{{ asset('images/'.$product->image) }}" style="width:200px"></a>
+    
+    <div class="col-xs-4">
+<div class="form-group">
+{!! Form::label('image', 'รูปภาพสินค้า'); !!}
+<?= Form::file('image', null, ['class' => 'form-control']) ?>
+</div>
+</div>
 </div>
 <div class="form-group">
 <div class="col-sm-10">
@@ -48,4 +56,19 @@
 </div>
 </div>
 </div>
+
+@endsection
+
+@section('footer')
+@if (session()->has('status'))
+<script>
+swal({
+title: "<?php echo session()->get('status'); ?>",
+text: "แก้ไขข้อมูลสินค้าเรียบร้อย",
+timer: 2000,
+type: 'success',
+showConfirmButton: false
+});
+</script>
+@endif
 @endsection
