@@ -26,6 +26,8 @@
          <!-- CSS  Boostrap 4.0-->
         <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
         
+        
+        
     </head>
     <body>
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
