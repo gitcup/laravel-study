@@ -61,7 +61,7 @@
                         <td><a href="{{ asset('images/admin/'.$administrator->image_user)}}"data-lity><img src="{{ asset('images/resize/admin/'.$administrator->image_user) }}" style="width:50px"></a></td>
                         <td>{{ $administrator->name }}&nbsp;&nbsp;{{ $administrator->lastname }}</td>
                         <td align="center" >{{ $administrator->email }}<br>{{ $administrator->phone_number}}</td>
-                        <td><br><br>update :{{ $administrator->updated_at }}</td>
+                        <td>{{ $administrator->activity_user }}<br><br>update :{{ $administrator->updated_at }}</td>
                         <td >
                             @if(strtolower(Auth::user()->user_type) === 'admin'  )
                             <a href="{{ url('/admin/'.$administrator->id.'/edit') }}" class="btn btn-outline-warning" >แก้ไข</a>
@@ -131,7 +131,7 @@
                         <td><a href="{{ asset('images/edit_admin/'.$edit_admin->image_user)}}"data-lity><img src="{{ asset('images/resize/admin/'.$edit_admin->image_user) }}" style="width:50px"></a></td>
                         <td>{{ $edit_admin->name }}&nbsp;&nbsp;{{ $edit_admin->lastname }}</td>
                         <td align="center" >{{ $edit_admin->email }}<br>{{ $edit_admin->phone_number}}</td>
-                        <td><br><br>update :{{ $administrator->updated_at }}</td>
+                        <td>{{ $administrator->activity_user }}<br><br>update :{{ $administrator->updated_at }}</td>
                         @if(strtolower(Auth::user()->user_type) === 'officer_edit' or (Auth::user()->user_type) === 'admin' )
                         <td>
 
@@ -204,7 +204,7 @@
                         <td>{{ $officer_view->name }}&nbsp;&nbsp;{{ $officer_view->lastname }}</td>
                         <td align="center" >{{ $officer_view->email }}<br>{{ $officer_view->phone_number}}</td>
                         @if(strtolower(Auth::user()->user_type) === 'officer_edit' or  (Auth::user()->user_type) === 'admin' )
-                        <td><br><br>update :{{ $administrator->updated_at }}</td>
+                        <td>{{ $administrator->activity_user }}<br><br>update :{{ $administrator->updated_at }}</td>
                         <td>
 
                             <a href="{{ url('/admin/'.$officer_view->id.'/edit')  }}" class="btn btn-outline-warning" >แก้ไข</a>

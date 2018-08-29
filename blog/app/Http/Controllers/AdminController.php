@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\Hash; //การเข้ารหัส passwor
 use DB; //อย่าลืมนำ DB เข้ามา
 use Illuminate\Support\CollectionStdClass; //ยังไม่เข้าใจตัวนี้
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Sessio;
 class AdminController extends Controller {
 
     //หน้าแรก
     public function index() {
         $admin = Admin::where('user_type', '=', 'admin')->paginate(3);
         $admin2 = Admin::where('user_type', '=', 'officer_edit')->paginate(3); //controller admins
-         $admin3 = Admin::where('user_type', '=', 'officer_view')->paginate(3);
-        return view('admin/index', ['admin' => $admin,'admin2' => $admin2,'admin3' => $admin3]);
-        
+        $admin3 = Admin::where('user_type', '=', 'officer_view')->paginate(3);
+        return view('admin/index', ['admin' => $admin, 'admin2' => $admin2, 'admin3' => $admin3]);
+
 //        if (strtolower(Auth::user()->user_type) == 'admin') {
 //            $admin = Admin::with('admin')->where('user_type', '=', 'admin')->paginate(3); //เมื่อ user_type = admin
 //            return view('admin/index', ['admin' => $admin]);
@@ -61,6 +61,8 @@ class AdminController extends Controller {
         $admin->password = $request->password;
         $admin->password = Hash::make($request);
         $admin->phone_number = $request->phone_number;
+      
+        $admin->activity_user =  Auth::user()->username; // เพิ่มข้อมูลคนที่แก้ไข
         if ($request->hasFile('image_user')) {
             $filename = str_random(10) . '.' . $request->file('image_user')->getClientOriginalExtension();
             $request->file('image_user')->move(public_path() . '/images/admin/', $filename);
@@ -71,6 +73,8 @@ class AdminController extends Controller {
         } else {
             $admin->image_user = 'nopic.jpg';
         }
+
+
         $admin->save();
 
         //sweet alert
@@ -83,42 +87,44 @@ class AdminController extends Controller {
     //แก้ไข
     public function edit($id) {
         $admin = Admin::findOrFail($id);
+        
         return view('admin.edit', ['admin' => $admin]);
     }
 
     public function update(AdminRequest $request, $id) {
-      $requestData = $request->all();
-    $post = Admin::findOrFail($id);
 
-    $pathToStore = public_path('images/admin');
+        $requestData = $request->all();
+        
+        $post = Admin::findOrFail($id);
+$post->activity_user = Auth::user()->username; // เพิ่มข้อมูลคนที่แก้ไข
+        $pathToStore = public_path('images/admin');
 
-    if ($request->hasFile('image')) 
-    {
-        $file = $request->file('image');
-        $rules = array('file' => 'required|mimes:png,gif,jpeg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
-        $validator = \Illuminate\Support\Facades\Validator::make(array('file'=> $file), $rules);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $rules = array('file' => 'required|mimes:png,gif,jpeg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
+            $validator = \Illuminate\Support\Facades\Validator::make(array('file' => $file), $rules);
 
-        if($validator->passes()) 
-        {
-            $filename = $file->getClientOriginalName(); 
-            $extension = $file -> getClientOriginalExtension();
-            $picture = sha1($filename . time()) . '.' . $extension;
-            $upload_success = $file->move($pathToStore, $picture);
-          
-            if($upload_success)
-            {
-                //if success, create thumb
-                $image = Image::make(sprintf($pathToStore.'/%s', $picture))->resize(600, 531)->save('images/'.'/resize/'.'admin/'.$picture);
+            if ($validator->passes()) {
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $picture = sha1($filename . time()) . '.' . $extension;
+                $upload_success = $file->move($pathToStore, $picture);
+
+                if ($upload_success) {
+                    //if success, create thumb
+                    $image = Image::make(sprintf($pathToStore . '/%s', $picture))->resize(600, 531)->save('images/' . '/resize/' . 'admin/' . $picture);
+                }
             }
+
+            $requestData['image_user'] = "{$picture}"; //image_user คือ คอลัมน์ใน DB
         }
 
-        $requestData['image_user'] = "{$picture}"; //image_user คือ คอลัมน์ใน DB
 
-    }
 
-    $post->update($requestData);
-$request->session()->flash('status', 'สำเร็จ');
-    return back();
+        $post->update($requestData);
+
+        $request->session()->flash('status', 'สำเร็จ');
+        return back();
     }
 
 }
