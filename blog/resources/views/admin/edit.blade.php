@@ -63,7 +63,12 @@
                             <?= Form::text('phone_number', null, ['class' => 'form-control', 'placeholder' => 'เบอร์โทรศัพท์']); ?>
                         </div>
                     </div>
-
+   <div class="col-xs-4">
+            <div class="form-group">
+                {!! Form::label('user_type', 'สถานะ'); !!}
+       <?=  Form::select('user_type', ['admin' => 'แอดมิน', 'officer_edit' => 'พนักงานแก้ไข' , 'officer_view' => 'พนักงานที่ดูได้อย่างเดียว']);?>
+        </div>
+</div>
 
                     <div class="form-group">
                         <div class="col-sm-10">

@@ -12,6 +12,7 @@ use DB; //อย่าลืมนำ DB เข้ามา
 use Illuminate\Support\CollectionStdClass; //ยังไม่เข้าใจตัวนี้
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Sessio;
+
 class AdminController extends Controller {
 
     //หน้าแรก
@@ -61,8 +62,8 @@ class AdminController extends Controller {
         $admin->password = $request->password;
         $admin->password = Hash::make($request);
         $admin->phone_number = $request->phone_number;
-      
-        $admin->activity_user =  Auth::user()->username; // เพิ่มข้อมูลคนที่แก้ไข
+        $admin->user_type = $request->user_type;
+        $admin->activity_user = Auth::user()->username; // เพิ่มข้อมูลคนที่แก้ไข
         if ($request->hasFile('image_user')) {
             $filename = str_random(10) . '.' . $request->file('image_user')->getClientOriginalExtension();
             $request->file('image_user')->move(public_path() . '/images/admin/', $filename);
@@ -87,16 +88,17 @@ class AdminController extends Controller {
     //แก้ไข
     public function edit($id) {
         $admin = Admin::findOrFail($id);
-        
+
         return view('admin.edit', ['admin' => $admin]);
     }
 
     public function update(AdminRequest $request, $id) {
 
         $requestData = $request->all();
-        
+
         $post = Admin::findOrFail($id);
-$post->activity_user = Auth::user()->username; // เพิ่มข้อมูลคนที่แก้ไข
+        $post->activity_user = Auth::user()->username; // เพิ่มข้อมูลคนที่แก้ไข
+        $post->touch(); //อัพเดทเวลา
         $pathToStore = public_path('images/admin');
 
         if ($request->hasFile('image')) {

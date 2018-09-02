@@ -22,8 +22,8 @@ Route::get('check-connect',function(){
  
 });
 
-
-
+//ตั้งค่าเวลา ให้แสดงตามโซนไทย
+date_default_timezone_set('Asia/Bangkok');
 //สินค้า
 Route::get('/typeproduct','TypeProductController@index')->name('typeproduct');
 //ลบข้อมูลสินค้า

@@ -4,15 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminRequest extends FormRequest
-{
+class AdminRequest extends FormRequest {
+
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
@@ -21,21 +20,21 @@ class AdminRequest extends FormRequest
      *
      * @return array
      */
-     public function rules() {
+    public function rules() {
         return [
-            'username' => 'required',
-            'name' => 'required',
-            'lastname' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'phone_number' => 'required',
-            'image_user' => 'mimes:jpeg,jpg,png',
+        'username' => 'required',
+        'name' => 'required',
+        'lastname' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+        'phone_number' => 'required',
+        'user_type' => 'required',
+        'image_user' => 'mimes:jpeg,jpg,png',
         ];
     }
 
     public function messages() {
         return [
-            
             'username.required' => 'กรุณากรอกชื่อผู้ใช้',
             'name.required' => 'กรุณากรอกชื่อจริง',
             'lastname.required' => 'กรุณากรอกนามสกุล',
@@ -43,6 +42,8 @@ class AdminRequest extends FormRequest
             'password.required' => 'กรุณากรอกรหัสผ่าน',
             'phone_number.required' => 'กรุณากรอกเบอร์โทร',
             'image_user.mimes' => 'กรุณาเลือกไฟล์ภาพนามสกุล jpeg,jpg,png',
+            'user_type.required' => 'กรุณาระบุประเภทของผู้ใช้งาน',
         ];
     }
+
 }
